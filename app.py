@@ -18,8 +18,7 @@ def respond():
     chat_id = update.message.chat.id
     msg_id = update.message.message_id
 
-    response = get_response("Helo " + update.message.from_user.username)
-
+    response = "Helo " + update.message.from_user.username
     bot.sendMessage(chat_id=chat_id, text=response, reply_to_message_id=msg_id)
 
     return 'ok'
