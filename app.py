@@ -1,7 +1,6 @@
 from flask import Flask, request
 import telegram
 from src.credentials import bot_token, bot_user_name, URL
-from src.mastermind import get_response
 
 
 global bot
@@ -19,11 +18,8 @@ def respond():
     chat_id = update.message.chat.id
     msg_id = update.message.message_id
 
-    # Telegram understands UTF-8, so encode text for unicode compatibility
-    text = update.message.text.encode('utf-8').decode()
-    print("got text message :", text)
+    response = get_response("Helo " + update.message.from_user.username)
 
-    response = get_response(text)
     bot.sendMessage(chat_id=chat_id, text=response, reply_to_message_id=msg_id)
 
     return 'ok'
